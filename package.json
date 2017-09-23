@@ -1,0 +1,38 @@
+{
+  "name": "vivi",
+  "version": "1.0.0",
+  "description": "Discord bot for MAYMAYS n stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "build": "tsc",
+    "lint": "tslint --format verbose --project ./tsconfig.json",
+    "lint-fix": "tslint --fix --format verbose --project ./tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siggame/vivi.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "maymay",
+    "memes",
+    "stuff"
+  ],
+  "author": "SIG-Game",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siggame/vivi/issues"
+  },
+  "homepage": "https://github.com/siggame/vivi#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1"
+  },
+  "devDependencies": {
+    "@siggame/colisee-tslint": "^1.0.3",
+    "@types/node": "^8.0.30",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
+  }
+}
