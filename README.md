@@ -1,4 +1,4 @@
-# siggame/YOUR_PROJECT_HERE
+# siggame/Vivi
 
 A brief description of the project.
 
@@ -31,11 +31,10 @@ How to get/install the service or library.
 Information about how to use the service or library.
 
 ## Contributors
-- [Russley Shaw](https://github.com/russleyshaw)
-- [user404d](https://github.com/user404d)
 - [Hannah Reinbolt](https://github.com/LoneGalaxy)
-- [Matthew Qualls](https://github.com/MatthewQualls)
-
+- [Dylan Warren](https://github.com/Uhuh)
+- [Cody Roberts](https://github.com/Crayon-Muncher)
+- [Donald Grinstead](https://github.com/Dfgrinstead)
 ## Change Log
 
 View our [CHANGELOG.md](https://github.com/siggame/YOUR_PROJECT_HERE/blob/master/CHANGELOG.md)
