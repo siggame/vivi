@@ -11,7 +11,8 @@ let responseObject: any= {
     "justright": "✋😩👌",
     "tableflip": "(╯°□°）╯︵ ┻━┻",
     "unflip": "┬──┬﻿ ノ( ゜-゜ノ)",
-    "yarp": "NARP!"
+    "yarp": "NARP!",
+    "ruski": "MALOOSKI"
 };
 
 // Current prefix commands.
@@ -43,7 +44,7 @@ client.on("guildMemberAdd", (member: Discord.GuildMember) => {
 // This will most likely be the main part of Vivi (for prefix maymays n stuff)
 client.on("message", (message: Discord.Message) => {
   if(!message.content.startsWith(config.prefix) || message.author.bot) return;
-  console.log("Username: " + message.author.username + "\n" + "ID: " + message.author.id)
+
   let msg = message.content.substring(config.prefix.length).split(" ");
   const args = message.content.split(" ").slice(1).join(" ");
   const member = message.member;
