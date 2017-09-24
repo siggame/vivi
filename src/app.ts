@@ -11,6 +11,26 @@ let responseObject = new Map<string, string | {file:string}>(
         ["justright", "✋😩👌"],
         ["tableflip", "(╯°□°）╯︵ ┻━┻"],
         ["unflip", "┬──┬﻿ ノ( ゜-゜ノ)" ],
+
+        ["MMAI1","Mega Miner AI was named Bombers"],
+        ["MMAI2", "Mega Miner AI was named Elements"],
+        ["MMAI3", "Mega Miner AI was named Zombies"],
+        ["MMAI4", "Mega Miner AI was named Time Travel"],
+        ["MMAI5", "Mega Miner AI was named Bloom"],
+        ["MMAI6", "Mega Miner AI was named Modular"],
+        ["MMAI7", "Mega Miner AI was named Piracy"],
+        ["MMAI8", "Mega Miner AI was named Botnet"],
+        ["MMAI9", "Mega Miner AI was named Space"],
+        ["MMAI10", "Mega Miner AI was named Galapagos"],
+        ["MMAI11", "Mega Miner AI was named Reef"],
+        ["MMAI12", "Mega Miner AI was named Mars"],
+        ["MMAI13", "Mega Miner AI was named Droids"],
+        ["MMAI14", "Mega Miner AI was named Plants"],
+        ["MMAI15", "Mega Miner AI was named Pharoah"],
+        ["MMAI16", "Mega Miner AI was named Anarchy"],
+        ["MMAI17", "Mega Miner AI was named Spiders"],
+        ["MMAI18", "Mega Miner AI was named Saloon"],
+        ["MMAI19", "Mega Miner AI was named Stumped"]
     ]
 );
 
