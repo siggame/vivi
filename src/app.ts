@@ -69,6 +69,10 @@ client.on("message", (message: Discord.Message) => {
   switch(msg[0].toLowerCase()) {
       case "listemojis":
       // All the current costume emojis will be printed.
+      if (message.channel.type === "dm") {
+        message.channel.send("Emojis hurt me in a pm. Try again in the main channels")
+        return; //this block checks whether the command is issued from a dm
+      }
       const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
       message.channel.send(emojiList);
       break;
