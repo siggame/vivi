@@ -17,7 +17,7 @@ A brief description of the project.
 - [Change Log](#change-log)
 - [License](#license)
 - [Contributing](#contributing)
-- [FAQ](#FAQ)
+- [FAQ](#faq)
 
 ## Description
 
