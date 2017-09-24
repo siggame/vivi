@@ -5,7 +5,6 @@ const client = new Discord.Client();
 // Some silly responses that don't require a prefix to use.
 let responseObject = new Map<string, string | {file:string}>(
     [
-        ["ayy", {file: "images/ayylmao.gif"}],
         ["pbjtime", {file: "images/pbjtime.gif"}],
         ["lenny", "( ͡° ͜ʖ ͡°)"],
         ["shrug", "¯\\_(ツ)_/¯"],
