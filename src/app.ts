@@ -11,26 +11,25 @@ let responseObject = new Map<string, string | {file:string}>(
         ["justright", "✋😩👌"],
         ["tableflip", "(╯°□°）╯︵ ┻━┻"],
         ["unflip", "┬──┬﻿ ノ( ゜-゜ノ)" ],
-
-        ["MMAI1","Mega Miner AI was named Bombers"],
-        ["MMAI2", "Mega Miner AI was named Elements"],
-        ["MMAI3", "Mega Miner AI was named Zombies"],
-        ["MMAI4", "Mega Miner AI was named Time Travel"],
-        ["MMAI5", "Mega Miner AI was named Bloom"],
-        ["MMAI6", "Mega Miner AI was named Modular"],
-        ["MMAI7", "Mega Miner AI was named Piracy"],
-        ["MMAI8", "Mega Miner AI was named Botnet"],
-        ["MMAI9", "Mega Miner AI was named Space"],
-        ["MMAI10", "Mega Miner AI was named Galapagos"],
-        ["MMAI11", "Mega Miner AI was named Reef"],
-        ["MMAI12", "Mega Miner AI was named Mars"],
-        ["MMAI13", "Mega Miner AI was named Droids"],
-        ["MMAI14", "Mega Miner AI was named Plants"],
-        ["MMAI15", "Mega Miner AI was named Pharoah"],
-        ["MMAI16", "Mega Miner AI was named Anarchy"],
-        ["MMAI17", "Mega Miner AI was named Spiders"],
-        ["MMAI18", "Mega Miner AI was named Saloon"],
-        ["MMAI19", "Mega Miner AI was named Stumped"]
+        ["mmai1","MegaMinerAI was named Bombers"],
+        ["mmai2", "MegaMinerAI was named Elements"],
+        ["mmai3", "MegaMinerAI was named Zombies"],
+        ["mmai4", "MegaMinerAI was named Time Travel"],
+        ["mmai5", "MegaMinerAI was named Bloom"],
+        ["mmai6", "MegaMinerAI was named Modular"],
+        ["mmai7", "MegaMinerAI was named Piracy"],
+        ["mmai8", "MegaMinerAI was named Botnet"],
+        ["mmai9", "MegaMinerAI was named Space"],
+        ["mmai10", "MegaMinerAI was named Galapagos"],
+        ["mmai11", "MegaMinerAI was named Reef"],
+        ["mmai12", "MegaMinerAI was named Mars"],
+        ["mmai13", "MegaMinerAI was named Droids"],
+        ["mmai14", "MegaMinerAI was named Plants"],
+        ["mmai15", "MegaMinerAI was named Pharoah"],
+        ["mmai16", "MegaMinerAI was named Anarchy"],
+        ["mmai17", "MegaMinerAI was named Spiders"],
+        ["mmai18", "MegaMinerAI was named Saloon"],
+        ["mmai19", "MegaMinerAI19 took place Spring 2017 and the game was Stumped"]
     ]
 );
 
@@ -43,12 +42,11 @@ let userCommands: string[] = [
 // Silly "Playing with..." thing.
 client.on("ready", () => {
   console.log(`[Started] ${new Date()}`);
-  client.user.setGame(' with ACM')
+  client.user.setGame(" with ACM")
 });
 
 // Vivi reads in messages and checks them against our responseObject to give a sweet reply
 client.on("message", (message: Discord.Message) => {
-  let words = message.content.split(" ");
   if(responseObject.has(message.content.toLowerCase())) {
     message.channel.send(responseObject.get(message.content.toLowerCase()));
   }
@@ -89,9 +87,9 @@ client.on("message", (message: Discord.Message) => {
 function send_pm(message: Discord.Message) {
   let noPrefix = "";
   //
-  for(let key in responseObject) {
-    noPrefix += key + "\n";
-  }
+  responseObject.forEach(function (item, key) {
+      noPrefix += key + "\n";
+  });
 
   let hasPrefix ="";
   for(let key in userCommands) {
