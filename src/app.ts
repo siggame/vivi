@@ -3,17 +3,17 @@ const config = require("../config.json");
 const client = new Discord.Client();
 
 // Some silly responses that don't require a prefix to use.
-let responseObject: any= {
-    "ayy": {file: "../images/ayylmao.gif"},
-    "pbjtime": {file: "../images/pbjtime.gif"},
-    "lenny": "( ͡° ͜ʖ ͡°)",
-    "shrug": "¯\\_(ツ)_/¯",
-    "justright": "✋😩👌",
-    "tableflip": "(╯°□°）╯︵ ┻━┻",
-    "unflip": "┬──┬﻿ ノ( ゜-゜ノ)",
-    "yarp": "NARP!",
-    "ruski": "MALOOSKI"
-};
+let responseObject = new Map<string, string | {file:string}>(
+    [
+        ["ayy", {file: "images/ayylmao.gif"}],
+        ["pbjtime", {file: "images/pbjtime.gif"}],
+        ["lenny", "( ͡° ͜ʖ ͡°)"],
+        ["shrug", "¯\\_(ツ)_/¯"],
+        ["justright", "✋😩👌"],
+        ["tableflip", "(╯°□°）╯︵ ┻━┻"],
+        ["unflip", "┬──┬﻿ ノ( ゜-゜ノ)" ],
+    ]
+);
 
 // Current prefix commands.
 let userCommands: string[] = [
@@ -23,15 +23,15 @@ let userCommands: string[] = [
 
 // Silly "Playing with..." thing.
 client.on("ready", () => {
-  console.log(`[Start] ${new Date()}`);
+  console.log(`[Started] ${new Date()}`);
   client.user.setGame(' with ACM')
 });
 
 // Vivi reads in messages and checks them against our responseObject to give a sweet reply
 client.on("message", (message: Discord.Message) => {
   let words = message.content.split(" ");
-  if(responseObject[message.content.toLowerCase()]) {
-    message.channel.send(responseObject[message.content.toLowerCase()]);
+  if(responseObject.has(message.content.toLowerCase())) {
+    message.channel.send(responseObject.get(message.content.toLowerCase()));
   }
 });
 
