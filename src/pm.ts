@@ -2,7 +2,6 @@ import * as Discord from "discord.js";
 const config = require("../config.json");
 import responseObject from "./nonPrefix";
 import client from "./app";
-import * as moment from "moment";
 
 // commands that require a prefix
 let userCommands: string[] = [

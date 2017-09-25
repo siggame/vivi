@@ -1,4 +1,3 @@
-import * as moment from "moment";
 import * as Discord from "discord.js";
 import client from "./app";
 const meetings = require("./meeting-times.json");

@@ -22,5 +22,11 @@
     "room": "CS 213",
     "startTime": "8AM",
     "endTime": "NOON"
+  },
+  "Web": {
+    "day": "Wednesday",
+    "room": "Refer to lead",
+    "startTime": "6PM",
+    "endTime": "7PM"
   }
 }
