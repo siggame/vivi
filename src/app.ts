@@ -22,9 +22,10 @@ client.on("message", (message: Discord.Message) => {
     message.channel.send(responseObject.get(message.content.toLowerCase()));
   }
 
+
   //BECAUSE OF MAYMAYS MY DOOOOOOOD
   let words = message.content.toLowerCase();
-  if(words.includes("linux") && !(message.author.bot)) {
+  if(words.includes("linux") && !(message.author.bot) && (Math.random()*1) < 0.05) {
       message.channel.send("I'd just like to interject for a moment.  What you're referring to as Linux,\n" +
           "is in fact, GNU/Linux, or as I've recently taken to calling it, GNU plus Linux.\n" +
           "Linux is not an operating system unto itself, but rather another free component\n" +
@@ -46,6 +47,7 @@ client.on("message", (message: Discord.Message) => {
           "distributions are really distributions of GNU/Linux.");
       return;
   }
+
 });
 
 // Welcome new users that join the server.
