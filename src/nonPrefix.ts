@@ -1,6 +1,6 @@
 export default new Map<string, string | {file:string}>(
     [
-        ["pbjtime", {file: "images/pbjtime.gif"}],
+        ["pbjtime", {file: "../images/pbjtime.gif"}],
         ["lenny", "( ͡° ͜ʖ ͡°)"],
         ["shrug", "¯\\_(ツ)_/¯"],
         ["justright", "✋😩👌"],
