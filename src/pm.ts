@@ -1,12 +1,15 @@
 import * as Discord from "discord.js";
-const config = require("../config.json");
 import responseObject from "./nonPrefix";
 import client from "./app";
+
+const config = require("../config.json");
 
 // commands that require a prefix
 let userCommands: string[] = [
     "listemojis",
-    "help"
+    "help",
+    "meetings",
+    "vivi"
 ];
 
 // Send a message to the user requesting info.
@@ -30,6 +33,7 @@ export default function send_pm(message: Discord.Message) {
                 "name": client.user.username,
                 "icon_url": client.user.avatarURL
             },
+            "color": 3447003,
             "title": client.user.username + " commands",
             "description": "A list of commands that " + client.user.username + " currently has.",
             "timestamp": new Date(),
@@ -48,7 +52,7 @@ export default function send_pm(message: Discord.Message) {
                 }
             ],
             "footer": {
-                "text": "Sliding in your DMs ;^)",
+                "text": "How do you prove that you exist...?",
                 "icon_url": "http://www.hardcoregamer.com/wp-content/uploads/2016/05/world-of-ff-vivi.jpg"
             }
         }

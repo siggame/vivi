@@ -1,4 +1,9 @@
 {
+  "General": {
+    "day": "Wednesday",
+    "room": "CS 207",
+    "startTime": "5PM"
+  },
   "PR": {
     "day": "Monday",
     "room": "CS 213",
@@ -7,13 +12,13 @@
   },
   "Visualizer": {
     "day": "Tuesday",
-    "room": "",
+    "room": "TBA",
     "startTime": "5PM",
     "endTime": "6PM"
   },
   "Game": {
     "day": "Monday",
-    "room": "",
+    "room": "CS 207",
     "startTime": "6PM",
     "endTime": "7PM"
   },

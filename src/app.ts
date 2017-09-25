@@ -1,9 +1,10 @@
 import * as Discord from "discord.js";
-const config = require("../config.json");
-const client = new Discord.Client();
 import send_pm from "./pm";
 import announce from "./announcement";
 import responseObject from "./nonPrefix";
+
+const config = require("../config.json");
+const client = new Discord.Client();
 
 export default client;
 
@@ -40,7 +41,7 @@ client.on("message", (message: Discord.Message) => {
       case "listemojis":
       // All the current costume emojis will be printed.
       if (message.channel.type === "dm") {
-        message.channel.send("Emojis hurt me in a pm. Try again in the main channels")
+        message.channel.send("Emojis hurt me in pm's. Try again in the main channels.")
         return; //this block checks whether the command is issued from a dm
       }
       const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
@@ -50,9 +51,11 @@ client.on("message", (message: Discord.Message) => {
       message.channel.send("I've sent you a PM!");
       send_pm(message);
       break;
-
-    case "vivi":
+    case "meetings":
       announce(message);
+      break;
+    case "vivi":
+      message.channel.send("If you need help use the " + config.prefix + "help command.");
       break;
   }
 });
