@@ -2,6 +2,7 @@ import * as Discord from "discord.js";
 const config = require("../config.json");
 const client = new Discord.Client();
 import send_pm from "./pm";
+import announce from "./announcement";
 import responseObject from "./nonPrefix";
 
 export default client;
@@ -51,7 +52,7 @@ client.on("message", (message: Discord.Message) => {
       break;
 
     case "vivi":
-      message.channel.send("Those black mages and I. Are we... the same?");
+      announce(message);
       break;
   }
 });

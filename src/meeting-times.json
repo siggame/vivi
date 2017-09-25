@@ -1,0 +1,26 @@
+{
+  "PR": {
+    "day": "Monday",
+    "room": "CS 213",
+    "startTime": "6PM",
+    "endTime": "7PM"
+  },
+  "Visualizer": {
+    "day": "Tuesday",
+    "room": "",
+    "startTime": "5PM",
+    "endTime": "6PM"
+  },
+  "Game": {
+    "day": "Monday",
+    "room": "",
+    "startTime": "6PM",
+    "endTime": "7PM"
+  },
+  "Arena": {
+    "day": "Saturday",
+    "room": "CS 213",
+    "startTime": "8AM",
+    "endTime": "NOON"
+  }
+}
