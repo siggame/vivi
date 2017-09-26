@@ -70,15 +70,19 @@ How to get/install the service or library.
 ## Usage
 
 - Create a `.env` file:
-  - ```bash
-    echo "TOKEN=<YOUR TOKEN HERE>
-    PREFIX=<SOME PREFIX>" > .env
-    ```
+
+```bash
+  echo "TOKEN=<YOUR TOKEN HERE>
+  PREFIX=<SOME PREFIX>" > .env
+```
+
 - To run vivi:
-  - ```bash
-    npm install
-    npm start
-    ```
+
+```bash
+  npm install
+  npm start
+```
+
 - Vivi will run until you ctrl-c out of the process
 - It's probably not a good idea to run it when it already running. You should also check Discord to see if `vivi` is already connected to the server.
 
