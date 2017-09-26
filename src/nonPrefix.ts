@@ -1,12 +1,12 @@
-export default new Map<string, string | {file:string}>(
+export default new Map<string, string | { file: string }>(
     [
-        ["pbjtime", {file: "../images/pbjtime.gif"}],
+        ["pbjtime", { file: "../images/pbjtime.gif" }],
         ["lenny", "( ͡° ͜ʖ ͡°)"],
         ["shrug", "¯\\_(ツ)_/¯"],
         ["justright", "✋😩👌"],
         ["tableflip", "(╯°□°）╯︵ ┻━┻"],
-        ["unflip", "┬──┬﻿ ノ( ゜-゜ノ)" ],
-        ["mmai1","MegaMinerAI1 took place Spring 2008 and the game was Bombers"],
+        ["unflip", "┬──┬﻿ ノ( ゜-゜ノ)"],
+        ["mmai1", "MegaMinerAI1 took place Spring 2008 and the game was Bombers"],
         ["mmai2", "MegaMinerAI2 took place Fall 2008 and the game was Elements"],
         ["mmai3", "MegaMinerAI3 took place Spring 2009 and the game was Zombies"],
         ["mmai4", "MegaMinerAI4 took place Fall 2009 and the game was Time Travel"],
@@ -25,5 +25,5 @@ export default new Map<string, string | {file:string}>(
         ["mmai17", "MegaMinerAI17 took place Spring 2016 and the game was Spiders"],
         ["mmai18", "MegaMinerAI18 took place Fall 2016 and the game was Saloon"],
         ["mmai19", "MegaMinerAI19 took place Spring 2017 and the game was Stumped"]
-    ]
+    ],
 );
