@@ -69,10 +69,18 @@ How to get/install the service or library.
 
 ## Usage
 
--To run vivi, cd into the src file, then run 'npm run build' 'node app.js'
--Vivi will run until you ctrl-c out of the process
--Its probably not a good idea run it when it already running. You should check Discord to see if it is already up
-Information about how to use the service or library.
+- Create a `.env` file:
+  - ```bash
+    echo "TOKEN=<YOUR TOKEN HERE>
+    PREFIX=<SOME PREFIX>" > .env
+    ```
+- To run vivi:
+  - ```bash
+    npm install
+    npm start
+    ```
+- Vivi will run until you ctrl-c out of the process
+- It's probably not a good idea to run it when it already running. You should also check Discord to see if `vivi` is already connected to the server.
 
 ## Contributors
 

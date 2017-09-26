@@ -4,7 +4,6 @@
   "description": "Discord bot for MAYMAYS n stuff",
   "main": "release/index.js",
   "scripts": {
-    "test": "mocha",
     "build": "tsc",
     "build:dist": "tsc -p tsconfig.dist.json",
     "clean": "npm run clean:src && npm run clean:test && npm run clean:misc",
@@ -12,7 +11,12 @@
     "clean:test": "rimraf test/**/*.js test/*.js",
     "clean:misc": "rimraf release/ node_modules/",
     "lint": "tslint --format verbose --project ./tsconfig.json",
-    "lint-fix": "tslint --fix --format verbose --project ./tsconfig.json"
+    "lint-fix": "tslint --fix --format verbose --project ./tsconfig.json",
+    "pretest": "npm run build",
+    "prestart": "npm run build",
+    "start": "node --inspect src",
+    "start:prod": "NODE_ENV=production node release",
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -38,9 +42,13 @@
   },
   "devDependencies": {
     "@siggame/colisee-tslint": "^1.0.3",
+    "@types/chai": "^4.0.4",
     "@types/dotenv": "^4.0.1",
+    "@types/mocha": "^2.2.43",
     "@types/moment": "^2.13.0",
     "@types/node": "^8.0.30",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
     "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
