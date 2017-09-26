@@ -2,10 +2,15 @@
   "name": "vivi",
   "version": "1.0.0",
   "description": "Discord bot for MAYMAYS n stuff",
-  "main": "index.js",
+  "main": "release/index.js",
   "scripts": {
     "test": "mocha",
     "build": "tsc",
+    "build:dist": "tsc -p tsconfig.dist.json",
+    "clean": "npm run clean:src && npm run clean:test && npm run clean:misc",
+    "clean:src": "rimraf src/**/*.js src/*.js",
+    "clean:test": "rimraf test/**/*.js test/*.js",
+    "clean:misc": "rimraf release/ node_modules/",
     "lint": "tslint --format verbose --project ./tsconfig.json",
     "lint-fix": "tslint --fix --format verbose --project ./tsconfig.json"
   },
@@ -27,12 +32,16 @@
   },
   "homepage": "https://github.com/siggame/vivi#readme",
   "dependencies": {
-    "discord.js": "^11.2.1"
+    "discord.js": "^11.2.1",
+    "dotenv": "^4.0.0",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "@siggame/colisee-tslint": "^1.0.3",
+    "@types/dotenv": "^4.0.1",
+    "@types/moment": "^2.13.0",
     "@types/node": "^8.0.30",
-    "moment": "^2.18.1",
+    "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "typescript": "^2.5.2"
