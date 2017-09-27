@@ -2,13 +2,19 @@ import * as Discord from "discord.js";
 import send_pm from "./pm";
 import announce from "./announcement";
 import responseObject from "./nonPrefix";
-
+import meetings from "./meeting-reminder";
 const config = require("../config.json");
 const client = new Discord.Client();
 
 export default client;
 
-// Some silly responses that don't require a prefix to use.
+const meetingTimer = setInterval(meetings, 7000);
+
+if(meetings)
+{
+  console.log("Meetings made it here?");
+  clearInterval(meetingTimer);
+}
 
 // Silly "Playing with..." thing.
 client.on("ready", () => {

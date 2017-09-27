@@ -2,36 +2,36 @@
   "General": {
     "day": "Wednesday",
     "room": "CS 207",
-    "startTime": "5PM"
+    "startTime": "5:00 PM"
   },
   "PR": {
-    "day": "Monday",
+    "day": "Tuesday",
     "room": "CS 213",
-    "startTime": "6PM",
-    "endTime": "7PM"
+    "startTime": "12:00 PM",
+    "endTime": "7:00 PM"
   },
   "Visualizer": {
     "day": "Tuesday",
     "room": "TBA",
-    "startTime": "5PM",
-    "endTime": "6PM"
+    "startTime": "5:00 PM",
+    "endTime": "6:00 PM"
   },
   "Game": {
     "day": "Monday",
     "room": "Toomey 251",
-    "startTime": "6PM",
-    "endTime": "7PM"
+    "startTime": "6:00 PM",
+    "endTime": "7:00 PM"
   },
   "Arena": {
     "day": "Saturday",
     "room": "CS 213",
-    "startTime": "8AM",
-    "endTime": "NOON"
+    "startTime": "8:00 AM",
+    "endTime": "12:00 PM"
   },
   "Web": {
     "day": "Wednesday",
     "room": "Refer to lead",
-    "startTime": "6PM",
-    "endTime": "7PM"
+    "startTime": "6:00 PM",
+    "endTime": "7:00 PM"
   }
 }
