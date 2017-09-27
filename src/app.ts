@@ -9,18 +9,22 @@ const client = new Discord.Client();
 
 export default client;
 
+// Run reminders every 1 second.
 let meetingTimer: any = setInterval(startReminder, 1000);
 
 function startReminder() {
+  // If there is a meeting, it will send a message and then enter this if statement
   if(meetings())
   {
-    console.log("Meetings made it here?");
+    //clear our current timer
     clearInterval(meetingTimer);
+    // Before we start the timer again, have it wait 1 hour.
     setTimeout(pauseTimer, 3600000);
   }
 }
 
 function pauseTimer() {
+  // Resume the timer and have it check every 1 second.
   meetingTimer = setInterval(startReminder, 1000);
 }
 
