@@ -3,6 +3,7 @@ import send_pm from "./pm";
 import announce from "./announcement";
 import responseObject from "./nonPrefix";
 import meetings from "./meeting-reminder";
+
 const config = require("../config.json");
 const client = new Discord.Client();
 

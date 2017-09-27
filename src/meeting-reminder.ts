@@ -11,6 +11,10 @@ const WebHour: any = moment(schedule.Web.startTime, ["h:mm A"]).format("HH");
 const GameHour: any = moment(schedule.Game.startTime, ["h:mm A"]).format("HH");
 const GenHour: any = moment(schedule.General.startTime, ["h:mm A"]).format("HH");
 
+const randomChannel: any = client.channels.get('275704765957275648');
+const arenaChannel: any = client.channels.get('275717152168869899');
+const webChannel: any = client.channels.get('275718920995078144');
+
 export default function check_if_its_time() {
   let hasAnnounced: boolean = false;
   let currentDay = moment(new Date()).format("dddd");
