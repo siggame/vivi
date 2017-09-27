@@ -21,8 +21,6 @@ export default function check_if_its_time() {
   const arenaChannel: any = client.channels.get('275717152168869899');
   const webChannel: any = client.channels.get('275718920995078144');
 
-  arenaChannel.send("TEST MY DUDE");
-
   let hasAnnounced: boolean = false;
   // Format of current day looks like... "Monday"
   let currentDay = moment(new Date()).format("dddd");
