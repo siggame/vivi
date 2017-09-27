@@ -1,6 +1,5 @@
 import * as Discord from "discord.js";
 import client from "./app";
-
 const meetings = require("./meeting-times.json");
 
 export default function announce(message: Discord.Message) {

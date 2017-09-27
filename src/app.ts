@@ -16,10 +16,10 @@ function startReminder() {
   // If there is a meeting, it will send a message and then enter this if statement
   if(meetings())
   {
-    //clear our current timer
-    clearInterval(meetingTimer);
-    // Before we start the timer again, have it wait 1 hour.
-    setTimeout(pauseTimer, 3600000);
+     //clear our current timer
+     clearInterval(meetingTimer);
+     // Before we start the timer again, have it wait 1 hour.
+     setTimeout(pauseTimer, 3600000);
   }
 }
 
@@ -104,5 +104,5 @@ client.on("message", (message: Discord.Message) => {
   }
 });
 
-// Turn on the bot :)
-client.login(config.token).catch((e) => console.log(e));
+// "Turn on" the bot.
+client.login(config.token);

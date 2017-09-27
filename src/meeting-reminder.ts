@@ -1,8 +1,7 @@
 
 import * as Discord from "discord.js";
-import client from "./app";
 import * as moment from "moment";
-
+import client from "./app";
 // Store the meeting times data into object schedule
 const schedule = require("./meeting-times.json");
 // Format the current meetign startTime to a 24 style
@@ -14,13 +13,16 @@ const WebHour: any = moment(schedule.Web.startTime, ["h:mm A"]).format("HH");
 const GameHour: any = moment(schedule.Game.startTime, ["h:mm A"]).format("HH");
 const GenHour: any = moment(schedule.General.startTime, ["h:mm A"]).format("HH");
 
-// Current channels that is viewable to me (Dylan) and will use these to 
-// have Vivi @ the correct roles in these channels (To no disturb everyone in announcement channel)
-const randomChannel: any = client.channels.get('275704765957275648');
-const arenaChannel: any = client.channels.get('275717152168869899');
-const webChannel: any = client.channels.get('275718920995078144');
-
 export default function check_if_its_time() {
+
+  // Current channels that is viewable to me (Dylan) and will use these to 
+  // have Vivi @ the correct roles in these channels (To no disturb everyone in announcement channel)
+  const randomChannel: any = client.channels.get('275704765957275648');
+  const arenaChannel: any = client.channels.get('275717152168869899');
+  const webChannel: any = client.channels.get('275718920995078144');
+
+  arenaChannel.send("TEST MY DUDE");
+
   let hasAnnounced: boolean = false;
   // Format of current day looks like... "Monday"
   let currentDay = moment(new Date()).format("dddd");
