@@ -8,12 +8,19 @@ const client = new Discord.Client();
 
 export default client;
 
-const meetingTimer = setInterval(meetings, 7000);
+let meetingTimer: any = setInterval(startReminder, 1000);
 
-if(meetings)
-{
-  console.log("Meetings made it here?");
-  clearInterval(meetingTimer);
+function startReminder() {
+  if(meetings())
+  {
+    console.log("Meetings made it here?");
+    clearInterval(meetingTimer);
+    setTimeout(pauseTimer, 3600000);
+  }
+}
+
+function pauseTimer() {
+  meetingTimer = setInterval(startReminder, 1000);
 }
 
 // Silly "Playing with..." thing.
@@ -27,7 +34,6 @@ client.on("message", (message: Discord.Message) => {
   if(responseObject.has(message.content.toLowerCase())) {
     message.channel.send(responseObject.get(message.content.toLowerCase()));
   }
-
 
   //BECAUSE OF MAYMAYS MY DOOOOOOOD
   let words = message.content.toLowerCase();
