@@ -2,7 +2,8 @@
   "General": {
     "day": "Wednesday",
     "room": "CS 207",
-    "startTime": "5:00 PM"
+    "startTime": "5:00 PM",
+    "endTime": "6:00 PM"
   },
   "PR": {
     "day": "Monday",

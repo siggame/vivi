@@ -20,6 +20,10 @@ export default function check_if_its_time() {
   const randomChannel: any = client.channels.get('275704765957275648');
   const arenaChannel: any = client.channels.get('275717152168869899');
   const webChannel: any = client.channels.get('275718920995078144');
+  const announceChannel: any = client.channels.get('277107668483702784');
+  const PRChannel: any = client.channels.get('277160918377562122');
+  const visChannel: any = client.channels.get('276176062877007872');
+  const gameChannel: any = client.channels.get('353334140734799874');
 
   let hasAnnounced: boolean = false;
   // Format of current day looks like... "Monday"
@@ -32,42 +36,42 @@ export default function check_if_its_time() {
   if((currentDay === schedule.PR.day) && ((PRHour-currentHour) === 1))
   {
     //Currently not outputting to the text channel till roles/permissions are sorted.
-    console.log("Public Relations meets in an hour! ("
+    PRChannel.send("@PR Public Relations meets in an hour! ("
                 + schedule.PR.startTime + ") In "
                 + schedule.PR.room);
     hasAnnounced = true;
   }
   if((currentDay === schedule.Visualizer.day) && ((VisHour-currentHour) === 1))
   {
-    console.log("Visualizer meets in an hour! ("
+    visChannel.send("@Visualizer Visualizer meets in an hour! ("
                 + schedule.Visualizer.startTime + ") In "
                 + schedule.Visualizer.room);
     hasAnnounced = true;
   }
   if((currentDay === schedule.Arena.day) && ((ArenaHour-currentHour) === 1))
   {
-     console.log("Arena meets in an hour! ("
+    arenaChannel.send("@Arena Arena meets in an hour! ("
                 + schedule.Arena.startTime + ") In "
                 + schedule.Arena.room);
     hasAnnounced = true;
   }
   if((currentDay === schedule.Game.day) && ((GameHour-currentHour) === 1))
   {
-    console.log("Game/AI meets in an hour! ("
+    gameChannel.send("@AI @Game Game/AI meets in an hour! ("
                 + schedule.Game.startTime + ") In "
                 + schedule.Game.room);
     hasAnnounced = true;
   }
   if((currentDay === schedule.Web.day) && ((WebHour-currentHour) === 1))
   {
-    console.log("Web meets in an hour! ("
+    webChannel.send("@Web Web meets in an hour! ("
                 + schedule.Web.startTime + ") In "
                 + schedule.Web.room);
     hasAnnounced = true;
   }
   if((currentDay === schedule.General.day) && ((GenHour-currentHour) === 1))
   {
-    console.log("General meets in an hour! ("
+    announceChannel.send("@everyone General meets in an hour! ("
                 + schedule.General.startTime + ") In "
                 + schedule.General.room);
     hasAnnounced = true;
