@@ -3,6 +3,7 @@
 .vscode/
 .idea/
 .env
+tslint.json
 
 # NodeJS & NPM
 node_modules/
@@ -23,4 +24,5 @@ Dockerfile
 README.md
 CHANGELOG.md
 release/
+test/
 tmp/
