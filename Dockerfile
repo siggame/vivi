@@ -22,11 +22,12 @@ FROM alpine:latest
 WORKDIR /app
 ENV NODE_ENV=production
 
-RUN apk update && apk add --no-cache libstdc++ libgcc tzdata &&\
+RUN apk update && apk add --no-cache libstdc++ libgcc tzdata ffmpeg &&\
     cp /usr/share/zoneinfo/America/Chicago /etc/localtime &&\
     echo "America/Chicago" > /etc/timezone &&\
     date &&\
     apk del tzdata
+
 COPY --from=build /usr/src/app/images /app/images
 COPY --from=build /usr/src/app/vivi /app/vivi
 
