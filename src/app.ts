@@ -86,7 +86,7 @@ client.on("message", (message: Discord.Message) => {
       announce(message);
       break;
     case "vivi":
-      message.channel.send(`If you need help use the ${PREFIX} help command.`);
+      message.channel.send(`If you need help use the ${PREFIX}help command.`);
       break;
     case "foo":
       music(message);
