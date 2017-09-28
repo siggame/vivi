@@ -3,6 +3,7 @@ import send_pm from "./pm";
 import announce from "./announcement";
 import responseObject from "./nonPrefix";
 import meetings from "./meeting-reminder";
+import music from "./music";
 
 const config = require("../config.json");
 const client = new Discord.Client();
@@ -100,6 +101,9 @@ client.on("message", (message: Discord.Message) => {
       break;
     case "vivi":
       message.channel.send("If you need help use the " + config.prefix + "help command.");
+      break;
+    case "foo":
+      music(message);
       break;
   }
 });

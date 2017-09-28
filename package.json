@@ -30,12 +30,17 @@
     "discord.js": "^11.2.1"
   },
   "devDependencies": {
-    "@siggame/colisee-tslint": "^1.0.3",
+    "@siggame/colisee-tslint": "github:siggame/colisee-tslint",
     "@types/moment": "^2.13.0",
     "@types/node": "^8.0.31",
+    "discord.js": "^11.2.1",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-binaries": "^3.2.2-3",
     "moment": "^2.18.1",
+    "opusscript": "0.0.3",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.3"
+    "typescript": "^2.5.3",
+    "ytdl-core": "^0.17.1"
   }
 }
