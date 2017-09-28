@@ -1,56 +1,70 @@
+import * as moment from "moment";
+
+type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+
 export interface IMeeting {
-    day: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+    day: Day;
     room: string;
-    startTime: string;
-    endTime?: string;
+    times: moment.Moment[];
 }
 
-export function formatMeeting(meeting: IMeeting): string {
-    let formatted = `**Day**: ${meeting.day}` +
-        `\n**Room**: ${meeting.room}` +
-        `\n**Starts**: ${meeting.startTime}`;
-    if (meeting.endTime) {
-        formatted += `\n**Ends**: ${meeting.endTime}`;
+export function formatMeeting({ day, room, times: [start, end] }: IMeeting): string {
+    let formatted = `**Day**: ${day}` +
+        `\n**Room**: ${room}` +
+        `\n**Starts**: ${start}`;
+    if (end) {
+        formatted += `\n**Ends**: ${end}`;
     }
     return formatted;
 }
 
-const meetings = new Map<string, IMeeting>([
+const meetingDetails: [string, { day: Day, room: string, times: string[] }][] = [
+    ["AI", {
+        day: "Monday",
+        room: "Toomey 251",
+        times: ["6:00 PM", "7:00 PM"],
+    }],
     ["Arena", {
         day: "Saturday",
-        endTime: "NOON",
         room: "CS 213",
-        startTime: "8AM",
+        times: ["8:00 AM", "12:00 PM"],
     }],
-    ["Game/AI", {
+    ["Game", {
         day: "Monday",
-        endTime: "7PM",
         room: "Toomey 251",
-        startTime: "6PM",
+        times: ["6:00 PM", "7:00 PM"],
     }],
     ["General SIG-Game", {
         day: "Wednesday",
         room: "CS 207",
-        startTime: "5PM",
+        times: ["5:00 PM"],
     }],
     ["Public Relations", {
         day: "Monday",
-        endTime: "7PM",
         room: "CS 213",
-        startTime: "6PM",
+        times: ["6:00 PM", "7:00 PM"],
     }],
     ["Visualizer", {
         day: "Tuesday",
-        endTime: "6PM",
         room: "TBA",
-        startTime: "5PM",
+        times: ["5:00 PM", "6:00 PM"],
     }],
     ["Web", {
         day: "Wednesday",
-        endTime: "7PM",
         room: "Refer to lead",
-        startTime: "6PM",
+        times: ["6:00 PM", "7:00 PM"],
     }],
-]);
+];
+
+// convert start and end `times` from strings to moments
+// a moment makes it easy to do match on dates and times
+const meetings = new Map<string, IMeeting>(
+    meetingDetails.map(([name, { times, ...rest }]): [string, IMeeting] => {
+        return [name, {
+            times: times.map((time): moment.Moment => moment(time, ["h:mm A"])),
+            ...rest,
+        }];
+    }),
+);
 
 export default meetings;

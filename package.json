@@ -39,7 +39,7 @@
     "discord.js": "^11.2.1",
     "dotenv": "^4.0.0",
     "ffmpeg": "0.0.4",
-    "ffmpeg-binaries": "^3.2.2-3",
+    "ffmpeg-binaries": "^3.2.2",
     "moment": "^2.18.1",
     "opusscript": "0.0.3",
     "ytdl-core": "^0.17.1"

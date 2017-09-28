@@ -3,7 +3,7 @@ dotenv.config();
 
 import * as Discord from "discord.js";
 import announce from "./announcement";
-import meetings from "./meeting-reminder";
+import reminders from "./meeting-reminder";
 import music from "./music";
 import responseObject from "./nonPrefix";
 import send_pm from "./pm";
@@ -31,27 +31,12 @@ normally used in combination with the GNU operating system: the whole system
 is basically GNU with Linux added, or GNU/Linux.  All the so-called "Linux"
 distributions are really distributions of GNU/Linux.`;
 
-// Run reminders every 1 second.
-let meetingTimer: any = setInterval(startReminder, 1000);
-
-function startReminder() {
-  // If there is a meeting, it will send a message and then enter this if statement
-  if (meetings()) {
-    //clear our current timer
-    clearInterval(meetingTimer);
-    // Before we start the timer again, have it wait 1 hour.
-    setTimeout(pauseTimer, 3600000);
-  }
-}
-
-function pauseTimer() {
-  // Resume the timer and have it check every 1 second.
-  meetingTimer = setInterval(startReminder, 1000);
-}
-
 // Silly "Playing with..." thing.
 client.on("ready", () => {
   console.log(`[Started] ${new Date()}`);
+  // make sure client is ready before creating and checking
+  // reminders
+  setInterval(reminders(), 1000);
   client.user.setGame(" with ACM");
 });
 

@@ -10,4 +10,4 @@ RUN npm install
 COPY . .
 RUN npm run build:dist
 
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:prod", "--silent"]
