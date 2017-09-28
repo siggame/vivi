@@ -73,7 +73,8 @@ How to get/install the service or library.
 
 ```bash
   echo "TOKEN=<YOUR TOKEN HERE>
-  PREFIX=<SOME PREFIX>" > .env
+  PREFIX=<SOME PREFIX>
+  TZ=America/Chicago" > .env
 ```
 
 - To run vivi:
