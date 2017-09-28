@@ -60,9 +60,9 @@ export default function prepareReminders() {
         // but if for some reason we missed moving the meeting times to
         // next week and it's not the hour before the meeting,
         // then just update the meeting times and don't send a message
-        if (start.diff(currentMoment, "hour") < 0) {
+        if (start.format("dddd") === day && start.diff(currentMoment, "minutes") < 0) {
           meeting.times.forEach((time) => time.add(1, "w"));
-        } else if (start.diff(currentMoment, "hour") <= 1) {
+        } else if (start.format("dddd") === day && start.diff(currentMoment, "minutes") <= 60) {
           const message = `${role} ${teamName} meets in ${start.diff(currentMoment, "minutes")} minutes! (${start}) In ${room}`;
           // move next meeting time one week forward
           meeting.times.forEach((time) => time.add(1, "w"));

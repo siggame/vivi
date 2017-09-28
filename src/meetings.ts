@@ -59,10 +59,11 @@ const meetingDetails: [string, { day: Day, room: string, times: string[] }][] = 
 // convert start and end `times` from strings to moments
 // a moment makes it easy to do match on dates and times
 const meetings = new Map<string, IMeeting>(
-    meetingDetails.map(([name, { times, ...rest }]): [string, IMeeting] => {
+    meetingDetails.map(([name, { day, room, times }]): [string, IMeeting] => {
         return [name, {
-            times: times.map((time): moment.Moment => moment(time, ["h:mm A"])),
-            ...rest,
+            day,
+            room,
+            times: times.map((time): moment.Moment => moment(time, ["h:mm A"]).day(day)),
         }];
     }),
 );
