@@ -51,7 +51,7 @@ export default function prepareReminders() {
   return () => {
     // get current time
     const currentMoment = moment();
-    Array.from(channels).forEach(([teamName, { channel, role }]) => {
+    for (const [teamName, { channel, role }] of channels) {
       // get the meeting for the corresponding team
       const meeting = meetings.get(teamName);
       if (meeting && channel) {
@@ -69,6 +69,6 @@ export default function prepareReminders() {
           (channel as Discord.TextChannel).send(message);
         }
       }
-    });
+    }
   };
 }
