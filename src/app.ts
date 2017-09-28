@@ -3,6 +3,8 @@ dotenv.config();
 
 import * as Discord from "discord.js";
 import announce from "./announcement";
+import meetings from "./meeting-reminder";
+import music from "./music";
 import responseObject from "./nonPrefix";
 import send_pm from "./pm";
 import { PREFIX, TOKEN } from "./vars";
@@ -29,7 +31,23 @@ normally used in combination with the GNU operating system: the whole system
 is basically GNU with Linux added, or GNU/Linux.  All the so-called "Linux"
 distributions are really distributions of GNU/Linux.`;
 
-// Some silly responses that don't require a prefix to use.
+// Run reminders every 1 second.
+let meetingTimer: any = setInterval(startReminder, 1000);
+
+function startReminder() {
+  // If there is a meeting, it will send a message and then enter this if statement
+  if (meetings()) {
+    //clear our current timer
+    clearInterval(meetingTimer);
+    // Before we start the timer again, have it wait 1 hour.
+    setTimeout(pauseTimer, 3600000);
+  }
+}
+
+function pauseTimer() {
+  // Resume the timer and have it check every 1 second.
+  meetingTimer = setInterval(startReminder, 1000);
+}
 
 // Silly "Playing with..." thing.
 client.on("ready", () => {
@@ -84,6 +102,9 @@ client.on("message", (message: Discord.Message) => {
       break;
     case "vivi":
       message.channel.send(`If you need help use the ${PREFIX} help command.`);
+      break;
+    case "foo":
+      music(message);
       break;
   }
 });
