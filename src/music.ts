@@ -10,6 +10,9 @@ export default function music(message: Discord.Message) {
   if (!voicechannel) {
     return message.reply("How can I play music in a text channel?");
   }
+  if(message.channel.type == "dm") {
+    return message.reply("you're silly, I can't play music when we're talking privately.");
+  }
   voicechannel.join()
     .then(connection => {
       const stream = ytdl(url, {
