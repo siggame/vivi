@@ -11,9 +11,9 @@ export interface IMeeting {
 export function formatMeeting({ day, room, times: [start, end] }: IMeeting): string {
     let formatted = `**Day**: ${day}` +
         `\n**Room**: ${room}` +
-        `\n**Starts**: ${start}`;
+        `\n**Starts**: ${start.format("h:mm A")}`;
     if (end) {
-        formatted += `\n**Ends**: ${end}`;
+        formatted += `\n**Ends**: ${end.format("h:mm A")}`;
     }
     return formatted;
 }
@@ -46,7 +46,7 @@ const meetingDetails: [string, { day: Day, room: string, times: string[] }][] = 
     }],
     ["Visualizer", {
         day: "Tuesday",
-        room: "TBA",
+        room: "CS 213",
         times: ["5:00 PM", "6:00 PM"],
     }],
     ["Web", {
