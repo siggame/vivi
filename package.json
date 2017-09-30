@@ -37,9 +37,7 @@
   "homepage": "https://github.com/siggame/vivi#readme",
   "dependencies": {
     "discord.js": "^11.2.1",
-    "dotenv": "^4.0.0",
     "ffmpeg": "0.0.4",
-    "ffmpeg-binaries": "^3.2.2",
     "moment": "^2.18.1",
     "opusscript": "0.0.3",
     "ytdl-core": "^0.17.1"
@@ -52,6 +50,8 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^8.0.30",
     "chai": "^4.1.2",
+    "dotenv": "^4.0.0",
+    "ffmpeg-binaries": "^3.2.2",
     "mocha": "^3.5.3",
     "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
