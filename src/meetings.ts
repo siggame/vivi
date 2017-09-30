@@ -11,9 +11,9 @@ export interface IMeeting {
 export function formatMeeting({ day, room, times: [start, end] }: IMeeting): string {
     let formatted = `**Day**: ${day}` +
         `\n**Room**: ${room}` +
-        `\n**Starts**: ${moment(start).format("h:mm A")}`;
+        `\n**Starts**: ${start.format("h:mm A")}`;
     if (end) {
-        formatted += `\n**Ends**: ${moment(end).format("h:mm A")}`;
+        formatted += `\n**Ends**: ${end.format("h:mm A")}`;
     }
     return formatted;
 }
