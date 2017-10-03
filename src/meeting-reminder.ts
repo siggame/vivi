@@ -63,7 +63,7 @@ export default function prepareReminders() {
         if (start.format("dddd") === day && start.diff(currentMoment, "minutes") < 0) {
           meeting.times.forEach((time) => time.add(1, "w"));
         } else if (start.format("dddd") === day && start.diff(currentMoment, "minutes") <= 60) {
-          const message = `${role} ${teamName} meets in ${start.diff(currentMoment, "minutes")} minutes! (${start}) In ${room}`;
+          const message = `${role} ${teamName} meets in ${start.diff(currentMoment, "minutes")} minutes! (${start.format("h:mm A")}) In ${room}`;
           // move next meeting time one week forward
           meeting.times.forEach((time) => time.add(1, "w"));
           (channel as Discord.TextChannel).send(message);
