@@ -34,7 +34,7 @@ const meetingDetails: [string, { day: Day, room: string, times: string[] }][] = 
         room: "Toomey 251",
         times: ["6:00 PM", "7:00 PM"],
     }],
-    ["General SIG-Game", {
+    ["General", {
         day: "Wednesday",
         room: "CS 207",
         times: ["5:00 PM"],
