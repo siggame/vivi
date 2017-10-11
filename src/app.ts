@@ -93,6 +93,7 @@ client.on("message", (message: Discord.Message) => {
       music(message);
       break;
     case "cancel":      
+      // Joining args by spaces because of team groups such as "Public Relations"
       cancel(args.join(" "), message);
       break;
     default:
