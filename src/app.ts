@@ -6,6 +6,7 @@ import announce from "./announcement";
 import reminders from "./meeting-reminder";
 import music from "./music";
 import responseObject from "./nonPrefix";
+import cancel from "./cancel-meeting";
 import send_pm from "./pm";
 import { PREFIX, TOKEN } from "./vars";
 
@@ -91,6 +92,11 @@ client.on("message", (message: Discord.Message) => {
     case "foo":
       music(message);
       break;
+    case "cancel":
+      cancel(args[0], message);
+      break;
+    default:
+      message.channel.send(`Invalid command, use ${PREFIX}help for a list of commands.`);
   }
 });
 
