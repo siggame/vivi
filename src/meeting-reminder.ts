@@ -14,8 +14,7 @@ interface ITeam {
 export default function prepareReminders() {
   // get the siggame server
   const server = client.guilds.find((guild) => guild.name === GUILD_NAME);
-  // Current channels that is viewable to me (Dylan) and will use these to 
-  // have Vivi @ the correct roles in these channels (To no disturb everyone in announcement channel)
+
   const teams = new Map<string, ITeam>([
     ["AI", {
       channel: client.channels.get("353334140734799874"),

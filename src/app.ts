@@ -92,12 +92,18 @@ client.on("message", (message: Discord.Message) => {
     case "foo":
       music(message);
       break;
-    case "cancel":
-      cancel(args[0], message);
+    case "cancel":      
+      cancel(args.join(" "), message);
       break;
     default:
-      message.channel.send(`Invalid command, use ${PREFIX}help for a list of commands.`);
-  }
+      if(message.channel.type === "dm") {
+        message.channel.send(`You tried to use a command that doesn't exist, here's my list.`);
+        send_pm(message);
+      }
+      else {
+        message.channel.send(`Invalid command, use ${PREFIX}help for a list of commands.`);
+      }  
+   }
 });
 
 // Turn on the bot :)

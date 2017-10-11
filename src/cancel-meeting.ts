@@ -31,7 +31,7 @@ export default function cancel(team: string, message: Discord.Message) {
       channel: client.channels.get("277107668483702784"),
       role: "@everyone",
     }],
-    ["PR", {
+    ["Public Relations", {
       channel: client.channels.get("277160918377562122"),
       role: server.roles.find((role) => role.name === "PR"),
     }],
@@ -45,20 +45,30 @@ export default function cancel(team: string, message: Discord.Message) {
     }],
   ]);
 
+  if(message.channel.type === "dm") {
+    message.channel.send("You can't cancel a meeting in a direct message.");
+    return;
+  }
+  
+  const LeadRole: Discord.Role  = server.roles.find((role) => role.name === "Leads");
+  const teamInfo = teams.get(team);  
 
-  const LeadRole: Discord.Role  = server.roles.find((role) => role.name === "Lead");
   if(message.member.roles.has(LeadRole.id)) {
     const meeting = meetings.get(team);
     if(!meeting) {
       message.reply("Invalid team name, please check for any spelling errors.");
       return;
     }
+    if(teamInfo) {
+      const channel = teamInfo.channel;      
+      (channel as Discord.TextChannel).send(`${teamInfo.role} there will be no meeting this week.`);
+    }
     meeting.times.forEach((time) => time.add(1, "w"));
-        
   }
   else {
     message.reply("You don't have the right permissions to use this command.");
     return;
   }
-  
+
+  return;
 }
