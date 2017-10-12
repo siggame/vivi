@@ -20,9 +20,9 @@ export function formatMeeting({ day, room, times: [start, end] }: IMeeting): str
 
 const meetingDetails: [string, { day: Day, room: string, times: string[] }][] = [
     ["AI", {
-        day: "Thursday",
-        room: "CS 204",
-        times: ["6:30 PM", "7:30 PM"],
+        day: "Monday",
+        room: "Toomey 251",
+        times: ["6:00 PM", "7:00 PM"],
     }],
     ["Arena", {
         day: "Saturday",
@@ -30,9 +30,9 @@ const meetingDetails: [string, { day: Day, room: string, times: string[] }][] = 
         times: ["8:00 AM", "12:00 PM"],
     }],
     ["Game", {
-        day: "Monday",
-        room: "Toomey 251",
-        times: ["6:00 PM", "7:00 PM"],
+        day: "Thursday",
+        room: "CS 304",
+        times: ["6:30 PM", "7:30 PM"],
     }],
     ["General", {
         day: "Wednesday",
