@@ -6,6 +6,7 @@ import announce from "./announcement";
 import reminders from "./meeting-reminder";
 import music from "./music";
 import responseObject from "./nonPrefix";
+import cancel from "./cancel-meeting";
 import send_pm from "./pm";
 import { PREFIX, TOKEN } from "./vars";
 
@@ -91,7 +92,19 @@ client.on("message", (message: Discord.Message) => {
     case "foo":
       music(message);
       break;
-  }
+    case "cancel":      
+      // Joining args by spaces because of team groups such as "Public Relations"
+      cancel(args.join(" "), message);
+      break;
+    default:
+      if(message.channel.type === "dm") {
+        message.channel.send(`You tried to use a command that doesn't exist, here's my list.`);
+        send_pm(message);
+      }
+      else {
+        message.channel.send(`Invalid command, use ${PREFIX}help for a list of commands.`);
+      }  
+   }
 });
 
 // Turn on the bot :)
