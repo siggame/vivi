@@ -31,10 +31,6 @@ export default function cancel(team: string, message: Discord.Message) {
       channel: client.channels.get("277107668483702784"),
       role: "@everyone",
     }],
-    ["Public Relations", {
-      channel: client.channels.get("277160918377562122"),
-      role: server.roles.find((role) => role.name === "PR"),
-    }],
     ["Visualizer", {
       channel: client.channels.get("276176062877007872"),
       role: server.roles.find((role) => role.name === "Visualizer"),
