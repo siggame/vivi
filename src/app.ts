@@ -88,7 +88,7 @@ client.on("message", (message: Discord.Message) => {
 
   const [command, ...args] = message.content.substring(PREFIX.length).split(" ");
   const member = message.member;
-
+  const voiceChannel = message.member.voiceChannel;
   switch (command.toLowerCase()) {
     case "listemojis":
       // All the current costume emojis will be printed.
@@ -116,6 +116,10 @@ client.on("message", (message: Discord.Message) => {
       // Joining args by spaces because of team groups such as "Public Relations"
       cancel(args.join(" "), message);
       break;
+    case "leave":
+      if(!voiceChannel) return;
+      voiceChannel.leave();
+      break;      
     default:
       if(message.channel.type === "dm") {
         message.channel.send(`You tried to use a command that doesn't exist, here's my list.`);
