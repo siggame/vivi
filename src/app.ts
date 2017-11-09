@@ -41,6 +41,26 @@ client.on("ready", () => {
   client.user.setGame(" with ACM");
 });
 
+client.on("message", (message: Discord.Message) => {
+  let mes: string = message.content.toLowerCase();  
+  if(mes !== "thanks vivi" && mes !== "thank you vivi") return;
+ 
+  let thanks: string[] = [
+    "No problem!",
+    "I've got your back!",
+    "It was nothing ;p",
+    "I-i-it's not like I wanted to help you... stupid! ;_;",
+    "Don't thank me, thank my creator!",
+    "My pleasure.",
+    "Sure thing.",
+    "Think nothing of it.",
+    "Happy to help!"
+  ];
+ 
+  let response: string = thanks[Math.floor(Math.random()*thanks.length)];
+  message.channel.send(response);
+});
+
 // Vivi reads in messages and checks them against our responseObject to give a sweet reply
 client.on("message", (message: Discord.Message) => {
   if (responseObject.has(message.content.toLowerCase())) {
