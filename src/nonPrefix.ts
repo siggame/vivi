@@ -1,7 +1,7 @@
 export default new Map<string, string | { file: string }>(
     [
         ["pbjtime", { file: "./images/pbjtime.gif" }],
-        ["bikini beaver", { file: "./images/beaver.png" }],
+        ["bikini beaver", { file: "./images/beaver.gif" }],
         ["lenny", "( ͡° ͜ʖ ͡°)"],
         ["shrug", "¯\\_(ツ)_/¯"],
         ["justright", "✋😩👌"],
