@@ -65,7 +65,6 @@ client.on("message", (message: Discord.Message) => {
 client.on("message", (message: Discord.Message) => {
   if (responseObject.has(message.content.toLowerCase())) {
     message.channel.send(responseObject.get(message.content.toLowerCase()));
-    message.delete();
   }
 
   //BECAUSE OF MAYMAYS MY DOOOOOOOD
