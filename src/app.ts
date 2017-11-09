@@ -49,7 +49,7 @@ client.on("message", (message: Discord.Message) => {
     "No problem!",
     "I've got your back!",
     "It was nothing ;p",
-    "I-i-it's not like I wanted to help you... stupid! ;_;",
+    "I-i-it's not like I wanted to help you... baka! ;_;",
     "Don't thank me, thank my creator!",
     "My pleasure.",
     "Sure thing.",
