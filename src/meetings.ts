@@ -1,4 +1,4 @@
-import * as moment from "moment";
+/*import * as moment from "moment";
 
 type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
@@ -64,3 +64,4 @@ const meetings = new Map<string, IMeeting>(
 );
 
 export default meetings;
+*/

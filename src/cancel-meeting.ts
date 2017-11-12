@@ -1,4 +1,4 @@
-import * as moment from "moment";
+/*import * as moment from "moment";
 import * as Discord from "discord.js";
 import { GUILD_NAME } from "./vars";
 import meetings from "./meetings";
@@ -68,3 +68,4 @@ export default function cancel(team: string, message: Discord.Message) {
 
   return;
 }
+*/

@@ -1,4 +1,4 @@
-
+/*
 import * as Discord from "discord.js";
 import * as moment from "moment";
 
@@ -71,3 +71,4 @@ export default function prepareReminders() {
     }
   };
 }
+*/

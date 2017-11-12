@@ -1,4 +1,4 @@
-import * as Discord from "discord.js";
+/*import * as Discord from "discord.js";
 import client from "./app";
 import { default as meetings, formatMeeting, IMeeting } from "./meetings";
 
@@ -24,3 +24,4 @@ export default function announce(message: Discord.Message) {
     };
     message.channel.send(reply);
 }
+*/

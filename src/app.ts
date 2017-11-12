@@ -2,11 +2,11 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import * as Discord from "discord.js";
-import announce from "./announcement";
-import reminders from "./meeting-reminder";
+//import announce from "./announcement";
+//import reminders from "./meeting-reminder";
 import music from "./music";
 import responseObject from "./nonPrefix";
-import cancel from "./cancel-meeting";
+//import cancel from "./cancel-meeting";
 import send_pm from "./pm";
 import { PREFIX, TOKEN } from "./vars";
 
@@ -37,8 +37,8 @@ client.on("ready", () => {
   console.log(`[Started] ${new Date()}`);
   // make sure client is ready before creating and checking
   // reminders
-  setInterval(reminders(), 1000);
-  client.user.setGame(" with ACM");
+  //setInterval(reminders(), 1000);
+  client.user.setGame(" with life");
 });
 
 client.on("message", (message: Discord.Message) => {
@@ -104,7 +104,7 @@ client.on("message", (message: Discord.Message) => {
       send_pm(message);
       break;
     case "meetings":
-      announce(message);
+      message.channel.send("MegaMinerAI20 has finished and there are no more lead meetings for now!");
       break;
     case "vivi":
       message.channel.send(`If you need help use the ${PREFIX}help command.`);
@@ -113,8 +113,9 @@ client.on("message", (message: Discord.Message) => {
       music(message);
       break;
     case "cancel":      
+      message.channel.send("Can't cancel what doesn't exist! ;)");
       // Joining args by spaces because of team groups such as "Public Relations"
-      cancel(args.join(" "), message);
+      //cancel(args.join(" "), message);
       break;
     default:
       if(message.channel.type === "dm") {
