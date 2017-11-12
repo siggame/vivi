@@ -76,12 +76,6 @@ client.on("message", (message: Discord.Message) => {
 
 });
 
-// Welcome new users that join the server.
-client.on("guildMemberAdd", (member: Discord.GuildMember) => {
-  const guild = member.guild;
-  guild.defaultChannel.send(`Welcome to ${guild.name} ${member.user}`);
-});
-
 // This will most likely be the main part of Vivi (for prefix maymays n stuff)
 client.on("message", (message: Discord.Message) => {
   if (!message.content.startsWith(PREFIX) || message.author.bot) return;
