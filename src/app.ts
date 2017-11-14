@@ -9,7 +9,7 @@ import responseObject from "./nonPrefix";
 import send_pm from "./pm";
 import updateStatus, { Category, Status } from "./update";
 //import cancel from "./cancel-meeting";
-import { PREFIX, TOKEN } from "./vars";
+import { STATUS_CHANNEL_ID, PREFIX, TOKEN } from "./vars";
 
 const client = new Discord.Client();
 
@@ -118,10 +118,13 @@ client.on("message", (message: Discord.Message) => {
       // Joining args by spaces because of team groups such as "Public Relations"
       //cancel(args.join(" "), message);
       break;
-      case "update":
+    case "update":
       // This is what Gerty did before in Slack: updates the SIG-Game status website
       // This command expects: '!update <category> to <status>; <title>: <message>
-
+      if(message.channel.id !== STATUS_CHANNEL_ID) {
+        message.channel.send("To update the status, please use this command within the appropriate status channel.");
+        return;
+      }
       // TODO: This should only work in the #statusupdate channel
 
       // We need to reassemble the arg string so that we can parse w/ a regex
