@@ -4,7 +4,6 @@ dotenv.config();
 import * as Discord from "discord.js";
 //import announce from "./announcement";
 //import reminders from "./meeting-reminder";
-import music from "./music";
 import responseObject from "./nonPrefix";
 import send_pm from "./pm";
 import updateStatus, { Category, Status } from "./update";
@@ -103,9 +102,6 @@ client.on("message", (message: Discord.Message) => {
       break;
     case "vivi":
       message.channel.send(`If you need help use the ${PREFIX}help command.`);
-      break;
-    case "foo":
-      music(message);
       break;
     case "cancel":      
       message.channel.send("Can't cancel what doesn't exist! ;)");
