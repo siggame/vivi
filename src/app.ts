@@ -18,7 +18,7 @@ client.on("ready", () => {
   // make sure client is ready before creating and checking
   // reminders
   //setInterval(reminders(), 1000);
-  client.user.setGame(" with life");
+  client.user.setActivity(" with life");
 });
 
 // Vivi reads in messages and checks them against our responseObject to give a sweet reply
@@ -28,7 +28,6 @@ client.on("message", (message: Discord.Message) => {
   }
 });
 
-// This will most likely be the main part of Vivi (for prefix maymays n stuff)
 client.on("message", (message: Discord.Message) => {
   if (!message.content.startsWith(PREFIX) || message.author.bot) return;
 
@@ -99,7 +98,7 @@ client.on("message", (message: Discord.Message) => {
             message.channel.send(`Updated status of ${category} to "${status}"`);
             return message.channel.send(`View the commit here: ${response.data.commit.html_url}`);
           }).catch((err) => {
-            console.log("Updatestatus error ", err);
+            console.log("Update status error ", err);
             return message.channel.send(`Something went wrong: ${err}`);
           });
         }

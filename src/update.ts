@@ -1,4 +1,4 @@
-import * as GitHubApi from "github";
+import * as octokit from "@octokit/rest";
 import * as yaml from "js-yaml";
 import * as moment from "moment";
 import * as slug from "slug";
@@ -7,6 +7,7 @@ import {STATUS_GITHUB_TOKEN, STATUS_REPO_NAME, STATUS_REPO_OWNER} from "./vars";
 
 export type Category = "webserver" | "arena" | "food" | "gameserver" | "visulizer" | "git";
 export type Status = "OK" | "Warning" | "Down";
+
 
 // TODO: Change date type to moment's type
 type Update = {
@@ -20,14 +21,17 @@ type Update = {
 };
 
 // Setup the GitHub API helper
-const github = new GitHubApi({
-  Promise: Promise,
-  debug: false,
+const octo = new octokit({
+  timeout: 5000,
   headers: {
     "user-agent": "SIG-Game-Hubot-Gerty",
   },
-  protocol: "https",
-  timeout: 5000,
+  protocol: "https"
+});
+
+octo.authenticate({
+  token: STATUS_GITHUB_TOKEN,
+  type: "token",
 });
 
 // Helper functions (should only be called from inside of updateStatus)
@@ -69,7 +73,9 @@ function prepareUpdate(update: Update): Promise<any> {
       repo: STATUS_REPO_NAME,
     };
 
-    github.repos.getContent(options).then((result) => {
+    console.log(octo.repos.getContent(options))
+
+    octo.repos.getContent(options).then((result: octokit.AnyResponse) => {
       // Retrieve the file names from `_posts/`
       const names = result.data.map((x: any) => x.name);
 
@@ -85,8 +91,8 @@ function prepareUpdate(update: Update): Promise<any> {
         name: title,
       };
       return resolve(update);
-    }).catch((err) => {
-      return reject(err.message);
+    }).catch((err: any) => {
+      return reject("Why");
     });
   });
 }
@@ -105,9 +111,9 @@ const submitUpdate = function(update: Update): Promise<any> {
       repo: STATUS_REPO_NAME,
     };
 
-    return github.repos.createFile(options).then((data) => {
+    return octo.repos.createFile(options).then((data: octokit.AnyResponse) => {
       return resolve(data);
-    }).catch((err) => {
+    }).catch((err: any) => {
       return reject(err.message);
     });
   });
@@ -132,10 +138,6 @@ export default function updateStatus(category: Category, status: Status, title: 
     if(!STATUS_GITHUB_TOKEN) {
       return reject("GitHub API Token isn't present or is blank. Please provide a token in your .env file.");
     }
-    github.authenticate({
-      token: STATUS_GITHUB_TOKEN,
-      type: "token",
-    });
 
     // TODO: Make the bot name (Vivi) a constant, not hardcoded
     const update: Update = {
