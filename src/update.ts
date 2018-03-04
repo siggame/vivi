@@ -8,7 +8,6 @@ import {STATUS_GITHUB_TOKEN, STATUS_REPO_NAME, STATUS_REPO_OWNER} from "./vars";
 export type Category = "webserver" | "arena" | "food" | "gameserver" | "visulizer" | "git";
 export type Status = "OK" | "Warning" | "Down";
 
-
 // TODO: Change date type to moment's type
 type Update = {
   author: string,
@@ -51,24 +50,10 @@ function submitUpdate(update: Update): Promise<any> {
 
     // Post content
     const content = `---\n${frontMatter}---\n\n${update.message}\n`;
-
-    let counter = 0;
-    const nextTitle = function () {
-      /*
-      Prepare the file's title, ensuring that it is unique by
-      tacking a -1, -2, -3, etc onto the end of the filename.
-      */
-      let title = `${update.date.format("YYYY-MM-DD")}-${slug(update.title)}`;
-      if (counter > 0) {
-        title = `${title}-${counter}`;
-      }
-      counter += 1;
-      return `${title}.md`;
-    };
     
     const options = {
-      owner: "siggame",
-      path: `_posts/${nextTitle()}`,
+      owner: STATUS_REPO_OWNER,
+      path: `_posts/${update.date.format("YYYY-MM-DD")}-${slug(update.title)}.md`,
       message: `Update status of ${update.category} to ${update.status}`,
       ref: "master",
       repo: STATUS_REPO_NAME,
