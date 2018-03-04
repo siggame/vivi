@@ -1,4 +1,4 @@
-import * as GitHubApi from "github";
+import * as octokit from "@octokit/rest";
 import * as yaml from "js-yaml";
 import * as moment from "moment";
 import * as slug from "slug";
@@ -20,18 +20,21 @@ type Update = {
 };
 
 // Setup the GitHub API helper
-const github = new GitHubApi({
-  Promise: Promise,
-  debug: false,
+const octo = new octokit({
+  timeout: 5000,
   headers: {
     "user-agent": "SIG-Game-Hubot-Gerty",
   },
-  protocol: "https",
-  timeout: 5000,
+  protocol: "https"
+});
+
+octo.authenticate({
+  token: STATUS_GITHUB_TOKEN,
+  type: "token",
 });
 
 // Helper functions (should only be called from inside of updateStatus)
-function prepareUpdate(update: Update): Promise<any> {
+function submitUpdate(update: Update): Promise<any> {
   /*
   Prepare a title and content for a status update
   */
@@ -47,71 +50,22 @@ function prepareUpdate(update: Update): Promise<any> {
 
     // Post content
     const content = `---\n${frontMatter}---\n\n${update.message}\n`;
-
-    let counter = 0;
-    const nextTitle = function () {
-      /*
-      Prepare the file's title, ensuring that it is unique by
-      tacking a -1, -2, -3, etc onto the end of the filename.
-      */
-      let title = `${update.date.format("YYYY-MM-DD")}-${slug(update.title)}`;
-      if (counter > 0) {
-        title = `${title}-${counter}`;
-      }
-      counter += 1;
-      return `${title}.md`;
-    };
-
+    
     const options = {
       owner: STATUS_REPO_OWNER,
-      path: "_posts",
+      path: `_posts/${update.date.format("YYYY-MM-DD")}-${slug(update.title)}.md`,
+      message: `Update status of ${update.category} to ${update.status}`,
       ref: "master",
       repo: STATUS_REPO_NAME,
+      content: new Buffer(content).toString("base64"),
     };
 
-    github.repos.getContent(options).then((result) => {
-      // Retrieve the file names from `_posts/`
-      const names = result.data.map((x: any) => x.name);
-
-      // Generate titles until we have a unique one.
-      let title = nextTitle();
-      while (names.indexOf(title) > 0) {
-        title = nextTitle();
-      }
-      // Add our created data to the update object
-      update.file = {
-        base64: new Buffer(content).toString("base64"),
-        content: content,
-        name: title,
-      };
-      return resolve(update);
-    }).catch((err) => {
-      return reject(err.message);
+    octo.repos.createFile(options).catch((err: any) => {
+      return reject(err);
     });
   });
 }
 
-const submitUpdate = function(update: Update): Promise<any> {
-  /*
-  Submit a status update to GitHub
-  */
-  return new Promise((resolve, reject) => {
-    const options = {
-      branch: "master",
-      content: update.file.base64,
-      message: `Update status of ${update.category} to ${update.status}`,
-      owner: STATUS_REPO_OWNER,
-      path: `_posts/${update.file.name}`,
-      repo: STATUS_REPO_NAME,
-    };
-
-    return github.repos.createFile(options).then((data) => {
-      return resolve(data);
-    }).catch((err) => {
-      return reject(err.message);
-    });
-  });
-};
 
 /**
  * updateStatus - updates a status on SIG-Game's Status Website
@@ -132,10 +86,6 @@ export default function updateStatus(category: Category, status: Status, title: 
     if(!STATUS_GITHUB_TOKEN) {
       return reject("GitHub API Token isn't present or is blank. Please provide a token in your .env file.");
     }
-    github.authenticate({
-      token: STATUS_GITHUB_TOKEN,
-      type: "token",
-    });
 
     // TODO: Make the bot name (Vivi) a constant, not hardcoded
     const update: Update = {
@@ -147,13 +97,7 @@ export default function updateStatus(category: Category, status: Status, title: 
       title: title,
     };
 
-    prepareUpdate(update).then((preppedUpdate) => {
-      submitUpdate(preppedUpdate).then((data) => {
-        return resolve(data);
-      }).catch((err) => {
-        return reject(err.message);
-      });
-    }).catch((err) => {
+    submitUpdate(update).catch((err) => {
       return reject(err.message);
     });
   });
