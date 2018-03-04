@@ -18,7 +18,7 @@ client.on("ready", () => {
   // make sure client is ready before creating and checking
   // reminders
   //setInterval(reminders(), 1000);
-  client.user.setActivity(" with life");
+  client.user.setActivity(" with pirates");
 });
 
 // Vivi reads in messages and checks them against our responseObject to give a sweet reply
@@ -98,7 +98,6 @@ client.on("message", (message: Discord.Message) => {
             message.channel.send(`Updated status of ${category} to "${status}"`);
             return message.channel.send(`View the commit here: ${response.data.commit.html_url}`);
           }).catch((err) => {
-            console.log("Update status error ", err);
             return message.channel.send(`Something went wrong: ${err}`);
           });
         }
@@ -106,13 +105,8 @@ client.on("message", (message: Discord.Message) => {
       }
       break;
     default:
-      if(message.channel.type === "dm") {
-        message.channel.send("You tried to use a command that doesn't exist, here's my list.");
-        send_pm(message);
-      }
-      else {
         message.channel.send(`Invalid command, use ${PREFIX}help for a list of commands.`);
-      }  
+
    }
 });
 
