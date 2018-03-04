@@ -35,7 +35,7 @@ octo.authenticate({
 });
 
 // Helper functions (should only be called from inside of updateStatus)
-function prepareUpdate(update: Update): Promise<any> {
+function submitUpdate(update: Update): Promise<any> {
   /*
   Prepare a title and content for a status update
   */
@@ -65,59 +65,22 @@ function prepareUpdate(update: Update): Promise<any> {
       counter += 1;
       return `${title}.md`;
     };
-
+    
     const options = {
-      owner: STATUS_REPO_OWNER,
-      path: "_posts",
+      owner: "siggame",
+      path: `_posts/${nextTitle()}`,
+      message: `Update status of ${update.category} to ${update.status}`,
       ref: "master",
       repo: STATUS_REPO_NAME,
+      content: new Buffer(content).toString("base64"),
     };
 
-    console.log(octo.repos.getContent(options))
-
-    octo.repos.getContent(options).then((result: octokit.AnyResponse) => {
-      // Retrieve the file names from `_posts/`
-      const names = result.data.map((x: any) => x.name);
-
-      // Generate titles until we have a unique one.
-      let title = nextTitle();
-      while (names.indexOf(title) > 0) {
-        title = nextTitle();
-      }
-      // Add our created data to the update object
-      update.file = {
-        base64: new Buffer(content).toString("base64"),
-        content: content,
-        name: title,
-      };
-      return resolve(update);
-    }).catch((err: any) => {
-      return reject("Why");
+    octo.repos.createFile(options).catch((err: any) => {
+      return reject(err);
     });
   });
 }
 
-const submitUpdate = function(update: Update): Promise<any> {
-  /*
-  Submit a status update to GitHub
-  */
-  return new Promise((resolve, reject) => {
-    const options = {
-      branch: "master",
-      content: update.file.base64,
-      message: `Update status of ${update.category} to ${update.status}`,
-      owner: STATUS_REPO_OWNER,
-      path: `_posts/${update.file.name}`,
-      repo: STATUS_REPO_NAME,
-    };
-
-    return octo.repos.createFile(options).then((data: octokit.AnyResponse) => {
-      return resolve(data);
-    }).catch((err: any) => {
-      return reject(err.message);
-    });
-  });
-};
 
 /**
  * updateStatus - updates a status on SIG-Game's Status Website
@@ -149,13 +112,7 @@ export default function updateStatus(category: Category, status: Status, title: 
       title: title,
     };
 
-    prepareUpdate(update).then((preppedUpdate) => {
-      submitUpdate(preppedUpdate).then((data) => {
-        return resolve(data);
-      }).catch((err) => {
-        return reject(err.message);
-      });
-    }).catch((err) => {
+    submitUpdate(update).catch((err) => {
       return reject(err.message);
     });
   });
