@@ -53,7 +53,7 @@ function submitUpdate(update: Update): Promise<any> {
     
     const options = {
       owner: STATUS_REPO_OWNER,
-      path: `_posts/${update.date.format("YYYY-MM-DD")}-${slug(update.title)}.md`,
+      path: `_posts/${update.date.format("YYYY-MM-DD HH:mm:ss")}-${slug(update.title)}.md`,
       message: `Update status of ${update.category} to ${update.status}`,
       ref: "master",
       repo: STATUS_REPO_NAME,
