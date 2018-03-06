@@ -41,11 +41,11 @@ function submitUpdate(update: Update): Promise<any> {
   return new Promise((resolve, reject) => {
     // YAML front matter for post
     const frontMatter = yaml.safeDump({
-      category: update.category,
-      date: update.date.format("YYYY-MM-DD HH:mm:ss ZZ"),
       layout: "update",
-      tags: update.status,
       title: update.title,
+      category: update.category,
+      tags: update.status,
+      date: update.date.format("YYYY-MM-DD HH:mm:ss ZZ"),     
     });
 
     // Post content
