@@ -60,8 +60,10 @@ function submitUpdate(update: Update): Promise<any> {
       content: new Buffer(content).toString("base64"),
     };
 
-    octo.repos.createFile(options).catch((err: any) => {
-      return reject(err);
+    octo.repos.createFile(options).then((data) => {
+      resolve(data)
+    }).catch((err: any) => {
+      reject(err);
     });
   });
 }
@@ -84,23 +86,23 @@ export default function updateStatus(category: Category, status: Status, title: 
   return new Promise((resolve, reject) => {
     // Check and make sure the token exists, and try and authenticate
     if(!STATUS_GITHUB_TOKEN) {
-      return reject("GitHub API Token isn't present or is blank. Please provide a token in your .env file.");
+      reject("GitHub API Token isn't present or is blank. Please provide a token in your .env file.");
     }
+    else {
+      const update: Update = {
+        author: "Vivi",
+        category: category,
+        date: moment(),
+        message: message,
+        status: status,
+        title: title,
+      };
 
-    // TODO: Make the bot name (Vivi) a constant, not hardcoded
-    const update: Update = {
-      author: "Vivi",
-      category: category,
-      date: moment(),
-      message: message,
-      status: status,
-      title: title,
-    };
-
-    submitUpdate(update).then((data) => {
-      return resolve(data);
-    }).catch((err) => {
-      return reject(err.message);
-    });
+      submitUpdate(update).then((data) => {
+        resolve(data);
+      }).catch((err) => {
+        reject(err.message);
+      });
+    }
   });
 }
