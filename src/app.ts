@@ -54,9 +54,6 @@ client.on("message", (message: Discord.Message) => {
     case "meetings":
       message.channel.send("MegaMinerAI20 has finished and there are no more lead meetings for now!");
       break;
-    case "vivi":
-      message.channel.send(`If you need help use the ${PREFIX}help command.`);
-      break;
     case "cancel":      
       message.channel.send("Can't cancel what doesn't exist! ;)");
       // Joining args by spaces because of team groups such as "Public Relations"
@@ -69,52 +66,30 @@ client.on("message", (message: Discord.Message) => {
         message.channel.send("To update the status, please use this command within the appropriate status channel.");
         return;
       }
-      // TODO: This should only work in the #statusupdate channel
+
       let updateErr = () => {
         return {embed: {
-          color: 321904,
-          author: {
-            name: client.user.username,
-            icon_url: client.user.avatarURL
-          },
-          title: ":octagonal_sign: :no_entry: :octagonal_sign: UPDATE ERROR :octagonal_sign: :no_entry: :octagonal_sign: ",
-          description: "There was an error while updating status! Make sure to use the format below.",
-          fields: [{
-              name: "Command format",
-              value: "!update <category> to <status>; <title>: <description>"
+            color: 321904,
+            author: {
+              name: client.user.username,
+              icon_url: client.user.avatarURL
             },
-            {
-              name: "<category> - All categories",
-              value: categories.join(" | ")
-            },
-            {
-              name: "<status> - All available statuses",
-              value: statuses.join(" | ")
-            },
-            {
-              name: "<title> - Ready/Broke/Etc",
-              value: "Should be short enoguh to describe what's happening."
-            },
-            {
-              name: "<description> - EG: There is Food!",
-              value: "This should describe what is happening, such as there is food, or the arena works."
+            title: ":octagonal_sign: :no_entry: :octagonal_sign: UPDATE ERROR :octagonal_sign: :no_entry: :octagonal_sign: ",
+            description: "There was an error while updating status! Make sure to use the format below.",
+            fields: [
+              { name: "Command format", value: "!update <category> to <status>; <title>: <description>" },
+              { name: "<category> - All categories", value: categories.join(" | ") },
+              { name: "<status> - All available statuses", value: statuses.join(" | ") },
+              { name: "<title> - Ready/Broke/Etc", value: "Should be short enoguh to describe what's happening." },
+              { name: "<description> - EG: There is Food!", value: "This should describe what is happening, such as there is food, or the arena works." }
+            ],
+            timestamp: new Date(),
+            footer: {
+              icon_url: client.user.avatarURL,
+              text: "Your friendly neighborhood mage."
             }
-          ],
-          timestamp: new Date(),
-          footer: {
-            icon_url: client.user.avatarURL,
-            text: "Your friendly neighborhood mage."
           }
         }
-      }
-
-
-
-
-
-
-
-
       }
       // We need to reassemble the arg string so that we can parse w/ a regex
       const argString: string = args.join(" ");
@@ -123,9 +98,8 @@ client.on("message", (message: Discord.Message) => {
 
       if(!messageRegex.test(argString)) {
         message.channel.send(updateErr());
-      } else {
-        // Do some more runtime checking to make sure their categories and stuff are correct
-        
+      } 
+      else {        
 
         // Array w/ the executed regex, to capture the groups
         const newArgs = messageRegex.exec(argString);
@@ -135,12 +109,11 @@ client.on("message", (message: Discord.Message) => {
           const status: Status = newArgs[2] as Status;
           const title: string = newArgs[3];
           const description: string = newArgs[4];
-          if(categories.indexOf(category) < 0) {
+
+          if(categories.indexOf(category) < 0 || statuses.indexOf(status) < 0) {
             message.channel.send(updateErr());
           }
-          if(statuses.indexOf(status) < 0) {
-            return message.channel.send(updateErr);
-          }
+          
           updateStatus(category, status, title, description).then((response) => {
             message.channel.send(`Updated status of ${category} to "${status}"`);
             return message.channel.send(`View the commit here: ${response.data.commit.html_url}`);

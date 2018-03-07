@@ -26,6 +26,5 @@ export default new Map<string, string | { file: string }>(
         ["mmai18", "MegaMinerAI18 took place Fall 2016 and the game was Saloon"],
         ["mmai19", "MegaMinerAI19 took place Spring 2017 and the game was Stumped"],
         ["mmai20", "MegaMinerAI20 took place Fall 2017 and the game was Catastrophe"],
-        ["f", ":skull: rip :skull:"],
     ],
 );
