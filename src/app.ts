@@ -54,9 +54,6 @@ client.on("message", (message: Discord.Message) => {
     case "meetings":
       message.channel.send("MegaMinerAI20 has finished and there are no more lead meetings for now!");
       break;
-    case "vivi":
-      message.channel.send(`If you need help use the ${PREFIX}help command.`);
-      break;
     case "cancel":      
       message.channel.send("Can't cancel what doesn't exist! ;)");
       // Joining args by spaces because of team groups such as "Public Relations"
