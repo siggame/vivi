@@ -55,7 +55,7 @@ function submitUpdate(update: Update): Promise<any> {
       owner: STATUS_REPO_OWNER,
       path: `_posts/${update.date.format("YYYY-MM-DD HH:mm:ss")}-${slug(update.title)}.md`,
       message: `Update status of ${update.category} to ${update.status}`,
-      ref: "master",
+      ref: "gh-pages",
       repo: STATUS_REPO_NAME,
       content: new Buffer(content).toString("base64"),
     };
