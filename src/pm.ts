@@ -11,6 +11,7 @@ const userCommands: string[] = [
     "meetings",
     "vivi",
     "cancel",
+    "update"
 ];
 
 // create these once
