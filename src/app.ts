@@ -111,7 +111,7 @@ client.on("message", (message: Discord.Message) => {
           const description: string = newArgs[4];
 
           if(categories.indexOf(category) < 0 || statuses.indexOf(status) < 0) {
-            message.channel.send(updateErr());
+            return message.channel.send(updateErr());
           }
           
           updateStatus(category, status, title, description).then((response) => {
