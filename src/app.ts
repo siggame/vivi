@@ -10,6 +10,8 @@ import updateStatus, { Category, Status } from "./update";
 //import cancel from "./cancel-meeting";
 import { STATUS_CHANNEL_ID, PREFIX, TOKEN } from "./vars";
 import { stat } from "fs";
+import createFork from "./status";
+
 
 const client = new Discord.Client();
 const categories : string[] = ["arena", "webserver", "git", "food", "visualizer", "gameserver"];
@@ -53,6 +55,12 @@ client.on("message", (message: Discord.Message) => {
       break;
     case "meetings":
       message.channel.send("MegaMinerAI20 has finished and there are no more lead meetings for now!");
+      break;
+    case "fork":
+      createFork().then(result => {
+      }).catch(err => {
+        console.log(err);
+      });
       break;
     case "cancel":      
       message.channel.send("Can't cancel what doesn't exist! ;)");
